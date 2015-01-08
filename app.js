@@ -55,8 +55,8 @@ var server = http.createServer(function(request, response) {
         response.end();
     }
      
-//}).listen(80); //use this if uploading to nodejitsu
-}).listen(8080); //use this if running locally
+}).listen(80); //use this if uploading to nodejitsu
+//}).listen(8080); //use this if running locally
  
      
  

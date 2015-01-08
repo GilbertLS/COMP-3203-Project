@@ -117,8 +117,8 @@ $(document).ready(function() {
 
 	console.log("connecting...");
 	
-	//var socket = io.connect("goDrawi.jit.su:80"); //use this if uploading to nodejitsu
-	var socket = io.connect("127.0.0.1:8080"); //use this if running locally
+	var socket = io.connect("drawandchat.jit.su:80"); //use this if uploading to nodejitsu
+	//var socket = io.connect("127.0.0.1:8080"); //use this if running locally
 	console.log("connected!!!");
 
 	//Sketchpad initialization
@@ -207,6 +207,10 @@ $(document).ready(function() {
 		data = JSON.parse(data);
 		gpsIDs = data.groupmatesIDs;
 		sendOfferToGroupmates(data.groupmatesIDs);
+	});
+
+	socket.on("disconnect", function() {
+		console.log("Server has been disconnected. It may now be impossible for users to join.");
 	});
 	function createOfferSendingFunction(grpMtID) {
 		return function(offer) {
@@ -317,10 +321,14 @@ $(document).ready(function() {
 	});
 	
 	$("#create-button").click(function() {
+		if(roomId == null) {
+			console.log("No room id. Cannot create room.")
+			return;
+		}
+
 		var string = "?i=".concat(roomId);
 		history.replaceState(null, "", string);
 		showNameForm();
-		
 	});
 
 	function setName() {
