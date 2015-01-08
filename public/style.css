@@ -139,6 +139,10 @@ html, body {
 	min-height: 30px;
 }
 
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+	margin-left: 2px;
+}
+
 .circle {
 	border-radius: 50%;
 	width: 100px;
