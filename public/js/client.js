@@ -4,26 +4,16 @@ $(document).ready(function() {
 	//===WEBRTC===
 	//============
 	channelOpen = false;
-	//http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
-	//http://www.html5rocks.com/en/tutorials/webrtc/basics/
-	//https://www.webrtc-experiment.com/docs/how-to-use-rtcdatachannel.html#sctp-firefox
-	//https://bitbucket.org/webrtc/codelab
-	//https://www.webrtc-experiment.com/docs/how-to-use-rtcdatachannel.html
 	
 	var PeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection || null;
 	var SessionDescription = window.RTCSessionDescription || window.mozRTCSessionDescription || window.webkitRTCSessionDescription || null;
-	
-	// The RTCIceCandidate object.
 	var RTCIceCandidate = window.mozRTCIceCandidate || window.webkitRTCIceCandidate || null;
-	//console.log(PeerConnection);
-	//console.log(SessionDescription);
-	//console.log(RTCIceCandidate);
 
 	if(!PeerConnection)
 		alert("Your browser does not support WebRTC. Get Firefox to use Drawi!");
 	
 	
-	//stores peerConnection and dataChannel
+	//Stores peerConnection and dataChannel
 	var ConnectionObj = {
 		create: function() {
 			var self = Object.create(this);
@@ -117,9 +107,8 @@ $(document).ready(function() {
 
 	console.log("connecting...");
 	
-	var socket = io.connect("drawandchat.jit.su:80"); //use this if uploading to nodejitsu
-	//var socket = io.connect("127.0.0.1:8080"); //use this if running locally
-	console.log("connected!!!");
+	//var socket = io.connect("drawandchat.jit.su:80"); //use this if uploading to nodejitsu
+	var socket = io.connect("localhost:80"); //use this if running locally
 
 	//Sketchpad initialization
 	var canvas = document.getElementById('canvas');
